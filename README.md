@@ -239,7 +239,7 @@ O projeto busca unir simplicidade de implementação, organização de código e
 Desenvolvido por **Alexander - 28041**  
 Disciplina: **Programação de Computadores II (INF102)**  
 Professor/Orientador do Trabalho: **Anderson Resende Lamas** 
-Centro Universitário de Viçosa (Univiçosa)
+Instituição: **Centro Universitário de Viçosa (Univiçosa)**
 
 
 
