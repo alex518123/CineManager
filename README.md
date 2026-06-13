@@ -108,6 +108,8 @@ Exemplo:
 
 * A classe `Filme` contém atributos como título, duração e status.
 * A mesma classe possui métodos responsáveis por manipular seus próprios dados.
+* O método `estaEmCartaz()` verifica se o filme está em exibição.
+* O método `obterDuracaoFormatada()` converte internamente a duração em minutos para um formato mais amigável, como "2h 46min", sem que outras partes do sistema precisem conhecer essa lógica.
 
 ---
 
@@ -229,5 +231,15 @@ http://localhost:3000
 O CineManager foi desenvolvido com o objetivo de aplicar os conceitos estudados na disciplina **Programação de Computadores II (INF102)**, demonstrando a utilização de Programação Orientada a Objetos, arquitetura em camadas, persistência de dados e desenvolvimento de aplicações web utilizando JavaScript.
 
 O projeto busca unir simplicidade de implementação, organização de código e uma interface moderna para proporcionar uma experiência de uso agradável e intuitiva.
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por **Alexander - 28041**  
+Disciplina: **Programação de Computadores II (INF102)**  
+Professor/Orientador do Trabalho: **Anderson Resende Lamas** 
+Centro Universitário de Viçosa (Univiçosa)
+
 
 
