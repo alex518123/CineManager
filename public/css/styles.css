@@ -35,9 +35,7 @@
   --transition: 200ms ease;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
