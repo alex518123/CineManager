@@ -446,21 +446,21 @@ body {
   border-radius: 50%;
 }
 
-.status-Em\ Cartaz {
+.status-Em-Cartaz {
   background: var(--success-bg);
   color: var(--success);
 }
 
-.status-Em\ Cartaz::before {
+.status-Em-Cartaz::before {
   background: var(--success);
 }
 
-.status-Em\ Breve {
+.status-Em-Breve {
   background: var(--warning-bg);
   color: var(--warning);
 }
 
-.status-Em\ Breve::before {
+.status-Em-Breve::before {
   background: var(--warning);
 }
 
