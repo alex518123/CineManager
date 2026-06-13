@@ -5,12 +5,12 @@
 
   criar(filme) {
     const sql = [
-      "INSERT INTO filmes (titulo, genero, duracao, classificacao, anoLancamento, sinopse, status)",
-      "VALUES (?, ?, ?, ?, ?, ?, ?)"
+      "INSERT INTO filmes (titulo, genero, duracao, classificacao, anoLancamento, sinopse, status, poster)",
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     ].join(" ");
     this.db.execute(sql, [
       filme.titulo, filme.genero, filme.duracao,
-      filme.classificacao, filme.anoLancamento, filme.sinopse, filme.status
+      filme.classificacao, filme.anoLancamento, filme.sinopse, filme.status, filme.poster
     ]);
     const result = this.db.queryOne("SELECT last_insert_rowid() as id");
     return this.buscarPorId(result.id);
@@ -34,13 +34,14 @@
       "    anoLancamento = ?,",
       "    sinopse = ?,",
       "    status = ?,",
+      "    poster = ?,",
       "    updatedAt = datetime('now', 'localtime')",
       "WHERE id = ?"
     ].join("\n");
     this.db.execute(sql, [
       dados.titulo, dados.genero, dados.duracao,
       dados.classificacao, dados.anoLancamento, dados.sinopse,
-      dados.status, id
+      dados.status, dados.poster, id
     ]);
     return this.buscarPorId(id);
   }

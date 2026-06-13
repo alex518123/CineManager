@@ -152,6 +152,10 @@
             </select>
           </div>
           <div class="form-group full-width">
+            <label for="poster">URL do Poster</label>
+            <input type="url" id="poster" placeholder="https://exemplo.com/poster.jpg">
+          </div>
+          <div class="form-group full-width">
             <label for="sinopse">Sinopse</label>
             <textarea id="sinopse" rows="3" required></textarea>
           </div>
@@ -174,6 +178,59 @@
       <div class="modal-actions">
         <button class="btn btn-secondary" id="confirm-cancel">Cancelar</button>
         <button class="btn btn-danger" id="confirm-delete">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="detail-overlay">
+    <div class="modal detail-modal" id="detail-modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="detail-title">Detalhes do Filme</h2>
+        <button class="modal-close" id="detail-close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="detail-body" id="detail-body">
+        <div class="detail-poster" id="detail-poster">
+          <div class="detail-poster-placeholder" id="detail-poster-placeholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Adicione um poster quando quiser</span>
+          </div>
+          <img id="detail-poster-img" class="detail-poster-img" src="" alt="Poster do filme">
+        </div>
+        <div class="detail-info">
+          <div class="detail-field">
+            <span class="detail-label">Titulo</span>
+            <span class="detail-value" id="detail-titulo"></span>
+          </div>
+          <div class="detail-field">
+            <span class="detail-label">Genero</span>
+            <span class="detail-value" id="detail-genero"></span>
+          </div>
+          <div class="detail-field">
+            <span class="detail-label">Duracao</span>
+            <span class="detail-value" id="detail-duracao"></span>
+          </div>
+          <div class="detail-field">
+            <span class="detail-label">Classificacao</span>
+            <span class="detail-value" id="detail-classificacao"></span>
+          </div>
+          <div class="detail-field">
+            <span class="detail-label">Ano</span>
+            <span class="detail-value" id="detail-ano"></span>
+          </div>
+          <div class="detail-field">
+            <span class="detail-label">Status</span>
+            <span class="detail-value" id="detail-status"></span>
+          </div>
+          <div class="detail-field detail-field-sinopse">
+            <span class="detail-label">Sinopse</span>
+            <p class="detail-sinopse" id="detail-sinopse"></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions detail-actions">
+        <button class="btn btn-primary" id="detail-fechar">Fechar</button>
       </div>
     </div>
   </div>

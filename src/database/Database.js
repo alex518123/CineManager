@@ -38,11 +38,17 @@ class DatabaseConnection {
       "  anoLancamento INTEGER NOT NULL,",
       "  sinopse TEXT NOT NULL,",
       "  status TEXT NOT NULL DEFAULT 'Em Breve',",
+      "  poster TEXT,",
       "  createdAt TEXT DEFAULT (datetime('now', 'localtime')),",
       "  updatedAt TEXT DEFAULT (datetime('now', 'localtime'))",
       ")"
     ].join("\n");
     this.db.run(sql);
+    try {
+      this.db.run("ALTER TABLE filmes ADD COLUMN poster TEXT");
+    } catch {
+      // Coluna ja existe
+    }
   }
 
   persistir() {

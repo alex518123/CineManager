@@ -1,5 +1,5 @@
 ﻿class Filme {
-  constructor({ id, titulo, genero, duracao, classificacao, anoLancamento, sinopse, status }) {
+  constructor({ id, titulo, genero, duracao, classificacao, anoLancamento, sinopse, status, poster }) {
     this.id = id;
     this.titulo = titulo;
     this.genero = genero;
@@ -8,6 +8,7 @@
     this.anoLancamento = anoLancamento;
     this.sinopse = sinopse;
     this.status = status;
+    this.poster = poster || null;
   }
 
   estaEmCartaz() {

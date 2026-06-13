@@ -51,6 +51,9 @@ class App {
       confirmFilmeName: document.getElementById('confirm-filme-name'),
       confirmCancel: document.getElementById('confirm-cancel'),
       confirmDelete: document.getElementById('confirm-delete'),
+      detailOverlay: document.getElementById('detail-overlay'),
+      detailClose: document.getElementById('detail-close'),
+      detailFechar: document.getElementById('detail-fechar'),
       toastContainer: document.getElementById('toast-container')
     };
   }
@@ -102,6 +105,21 @@ class App {
     this.els.confirmDelete.addEventListener('click', () => this.handleDelete());
     this.els.confirmOverlay.addEventListener('click', (e) => {
       if (e.target === this.els.confirmOverlay) this.fecharConfirm();
+    });
+
+    this.els.detailClose.addEventListener('click', () => this.fecharDetail());
+    this.els.detailFechar.addEventListener('click', () => this.fecharDetail());
+    this.els.detailOverlay.addEventListener('click', (e) => {
+      if (e.target === this.els.detailOverlay) this.fecharDetail();
+    });
+
+    this.els.tableBody.addEventListener('click', (e) => {
+      const tr = e.target.closest('tr[data-id]');
+      if (!tr) return;
+      if (e.target.closest('.cell-actions')) return;
+      const id = Number(tr.dataset.id);
+      const filme = this.filmes.find(f => f.id === id);
+      if (filme) this.abrirDetail(filme);
     });
   }
 
@@ -221,7 +239,7 @@ class App {
     this.els.tableBody.innerHTML = filmes.map(f => {
       
       return `
-        <tr>
+        <tr data-id="${f.id}">
           <td class="cell-title">${f.titulo}</td>
           <td>${f.genero}</td>
           <td>${App.formatarDuracao(f.duracao)}</td>
@@ -241,11 +259,17 @@ class App {
     }).join('');
 
     document.querySelectorAll('[data-editar]').forEach(btn => {
-      btn.addEventListener('click', () => this.abrirModal(Number(btn.dataset.editar)));
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.abrirModal(Number(btn.dataset.editar));
+      });
     });
 
     document.querySelectorAll('[data-excluir]').forEach(btn => {
-      btn.addEventListener('click', () => this.abrirConfirm(Number(btn.dataset.excluir)));
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.abrirConfirm(Number(btn.dataset.excluir));
+      });
     });
   }
 
@@ -292,6 +316,7 @@ class App {
         document.getElementById('anoLancamento').value = filme.anoLancamento;
         document.getElementById('sinopse').value = filme.sinopse;
         document.getElementById('status').value = filme.status;
+        document.getElementById('poster').value = filme.poster || '';
       }
     } else {
       this.els.modalTitle.textContent = 'Novo Filme';
@@ -315,7 +340,8 @@ class App {
       classificacao: document.getElementById('classificacao').value,
       anoLancamento: Number(document.getElementById('anoLancamento').value),
       sinopse: document.getElementById('sinopse').value.trim(),
-      status: document.getElementById('status').value
+      status: document.getElementById('status').value,
+      poster: document.getElementById('poster').value.trim() || null
     };
 
     try {
@@ -343,6 +369,46 @@ class App {
   fecharConfirm() {
     this.els.confirmOverlay.classList.remove('open');
     this.deletingId = null;
+  }
+
+  abrirDetail(filme) {
+    this.renderDetail(filme);
+    this.els.detailOverlay.classList.add('open');
+  }
+
+  fecharDetail() {
+    this.els.detailOverlay.classList.remove('open');
+  }
+
+  renderDetail(filme) {
+    document.getElementById('detail-titulo').textContent = filme.titulo;
+    document.getElementById('detail-genero').textContent = filme.genero;
+    document.getElementById('detail-duracao').textContent = App.formatarDuracao(filme.duracao);
+    document.getElementById('detail-classificacao').textContent = filme.classificacao;
+    document.getElementById('detail-ano').textContent = filme.anoLancamento;
+    document.getElementById('detail-status').innerHTML = `<span class="status-badge status-${filme.status.replace(/\s/g, '-')}">${filme.status}</span>`;
+    document.getElementById('detail-sinopse').textContent = filme.sinopse;
+
+    const img = document.getElementById('detail-poster-img');
+    const placeholder = document.getElementById('detail-poster-placeholder');
+
+    img.classList.remove('loaded');
+    img.style.display = 'none';
+    placeholder.style.display = 'flex';
+
+    if (filme.poster) {
+      img.onload = () => {
+        img.classList.add('loaded');
+        img.style.display = 'block';
+        placeholder.style.display = 'none';
+      };
+      img.onerror = () => {
+        img.classList.remove('loaded');
+        img.style.display = 'none';
+        placeholder.style.display = 'flex';
+      };
+      img.src = filme.poster;
+    }
   }
 
   async handleDelete() {
