@@ -26,6 +26,8 @@ Desenvolver uma aplicação web capaz de realizar operações de **CRUD (Create,
 * ✅ Excluir filmes
 * ✅ Buscar filmes por título
 * ✅ Dashboard com estatísticas
+* ✅ Adicionar URL do pôster ao cadastrar/editar filmes
+* ✅ Visualizar detalhes do filme com pôster ao clicar na tabela
 * ✅ Interface responsiva
 * ✅ Persistência dos dados em SQLite
 
@@ -164,7 +166,8 @@ CREATE TABLE filmes (
     classificacao TEXT NOT NULL,
     anoLancamento INTEGER NOT NULL,
     sinopse TEXT NOT NULL,
-    status TEXT NOT NULL
+    status TEXT NOT NULL,
+    poster TEXT
 );
 ```
 
