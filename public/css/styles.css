@@ -1,4 +1,6 @@
-﻿*, *::before, *::after {
+﻿*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -98,6 +100,7 @@ body {
   color: var(--text-secondary);
   font-weight: 400;
   max-width: 480px;
+  min-height: 3.5em;
   margin: 0 auto;
   animation: fadeInUp 0.6s ease-out 0.1s both;
 }
@@ -148,10 +151,25 @@ body {
   flex-shrink: 0;
 }
 
-.stat-icon-total { background: var(--primary-bg); color: var(--primary); }
-.stat-icon-cartaz { background: var(--success-bg); color: var(--success); }
-.stat-icon-breve { background: var(--warning-bg); color: var(--warning); }
-.stat-icon-encerrado { background: var(--danger-bg); color: var(--danger); }
+.stat-icon-total {
+  background: var(--primary-bg);
+  color: var(--primary);
+}
+
+.stat-icon-cartaz {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.stat-icon-breve {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.stat-icon-encerrado {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
 
 .stat-info {
   display: flex;
@@ -483,12 +501,35 @@ body {
   font-weight: 700;
 }
 
-.class-livre { background: var(--success-bg); color: var(--success); }
-.class-10 { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
-.class-12 { background: var(--warning-bg); color: var(--warning); }
-.class-14 { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
-.class-16 { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
-.class-18 { background: rgba(0, 0, 0, 0.3); color: var(--text-primary); }
+.class-livre {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.class-10 {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.class-12 {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+.class-14 {
+  background: rgba(249, 115, 22, 0.15);
+  color: #fb923c;
+}
+
+.class-16 {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+.class-18 {
+  background: rgba(0, 0, 0, 0.3);
+  color: var(--text-primary);
+}
 
 /* Empty state */
 .empty-state {
@@ -835,6 +876,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -846,6 +888,7 @@ body {
     opacity: 0;
     transform: scale(0.95) translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -857,6 +900,7 @@ body {
     opacity: 0;
     transform: translateX(20px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);

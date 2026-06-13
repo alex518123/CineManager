@@ -24,6 +24,7 @@ class App {
     this.cacheElements();
     this.bindEvents();
     this.initLenis();
+    this.initTypewriter();
     this.carregarFilmes();
   }
 
@@ -237,7 +238,7 @@ class App {
     this.els.tableInfo.textContent = `${inicio}-${fim} de ${total} filmes`;
 
     this.els.tableBody.innerHTML = filmes.map(f => {
-      
+
       return `
         <tr data-id="${f.id}">
           <td class="cell-title">${f.titulo}</td>
@@ -421,6 +422,44 @@ class App {
     } catch (err) {
       this.mostrarToast(err.message, 'error');
     }
+  }
+
+  initTypewriter() {
+    const el = document.getElementById('hero-subtitle');
+    const frases = [
+      'Gerencie os filmes em cartaz de forma moderna e eficiente.',
+      'Cadastre, edite e organize seus filmes com facilidade.',
+      'Tudo que você precisa em um só lugar.'
+    ];
+    let indiceFrase = 0;
+    let charIndex = 0;
+    let apagando = false;
+
+    const type = () => {
+      const frase = frases[indiceFrase];
+
+      if (!apagando) {
+        el.textContent = frase.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === frase.length) {
+          setTimeout(() => { apagando = true; type(); }, 3000);
+          return;
+        }
+        setTimeout(type, 60);
+      } else {
+        el.textContent = frase.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          apagando = false;
+          indiceFrase = (indiceFrase + 1) % frases.length;
+          setTimeout(type, 1000);
+          return;
+        }
+        setTimeout(type, 30);
+      }
+    };
+
+    type();
   }
 
   mostrarToast(mensagem, tipo = 'success') {
